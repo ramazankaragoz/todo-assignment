@@ -1,7 +1,8 @@
 package com.comodo.userapi.dto;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 public class UserDto {

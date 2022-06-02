@@ -5,8 +5,9 @@ import com.comodo.userapi.dto.UserInformationDto;
 import com.comodo.userapi.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@Validated @RequestBody UserDto userDto){
+    public ResponseEntity<String> save(@Valid @RequestBody UserDto userDto){
         userService.save(userDto);
         return new ResponseEntity<>(HttpStatus.CREATED.getReasonPhrase(),HttpStatus.CREATED);
     }

@@ -1,4 +1,4 @@
-package com.comodo.userapi.exception;
+package com.comodo.groupapi.exception;
 
 
 import org.springframework.http.HttpHeaders;
@@ -24,10 +24,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(UserAlreadyExistException.class)
+    @ExceptionHandler(GroupNotFoundException.class)
     public final ResponseEntity<Object> handleNotFoundException(Exception ex, WebRequest req){
         RestError exceptionResponse = new RestError(new Date(), ex.getMessage(), req.getDescription(false));
-        return new ResponseEntity<>(exceptionResponse,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionResponse,HttpStatus.NOT_FOUND);
     }
 
     @Override

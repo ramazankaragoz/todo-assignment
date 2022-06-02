@@ -1,7 +1,6 @@
-package com.comodo.userapi.entity;
+package com.comodo.todoapi.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -43,5 +42,7 @@ public abstract class BaseEntity {
         this.updateDate = Instant.now();
     }
 
-
+    public Long getId() {
+        return id;
+    }
 }
