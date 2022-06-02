@@ -1,4 +1,4 @@
-package com.comodo.todoassignmentgateway.config;
+package com.comodo.todoassignmentgateway.config.security;
 
 
 import com.comodo.todoassignmentgateway.client.UserClient;
@@ -18,7 +18,6 @@ import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
 
     private final UserClient userClient;
     public static Collection<? extends GrantedAuthority> grantedAuthorities;

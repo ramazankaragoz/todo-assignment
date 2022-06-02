@@ -1,4 +1,4 @@
-package com.comodo.todoassignmentgateway.config;
+package com.comodo.todoassignmentgateway.config.security;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;

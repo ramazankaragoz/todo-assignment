@@ -1,4 +1,4 @@
-package com.comodo.todoassignmentgateway.config;
+package com.comodo.todoassignmentgateway.config.security;
 
 
 import io.jsonwebtoken.Jwts;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-import static com.comodo.todoassignmentgateway.config.JWTSecurityConstant.TOKEN_PREFIX;
+import static com.comodo.todoassignmentgateway.config.security.JWTSecurityConstant.TOKEN_PREFIX;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 

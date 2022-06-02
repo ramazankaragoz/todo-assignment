@@ -3,6 +3,12 @@ server:
   servlet:
     context-path: /gateway
 
+client:
+  auth-server:
+    token-url: http://127.0.0.1:8081/oauth2/token
+    client-id: todo-client
+    secret: secret
+    scopes: todo.read,todo.write
 
 springdoc:
   show-login-endpoint: true

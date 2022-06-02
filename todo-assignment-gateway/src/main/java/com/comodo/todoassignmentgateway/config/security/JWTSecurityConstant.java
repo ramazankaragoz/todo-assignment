@@ -1,4 +1,4 @@
-package com.comodo.todoassignmentgateway.config;
+package com.comodo.todoassignmentgateway.config.security;
 
 public class JWTSecurityConstant {
     public static final String SECRET="COMODO_JWT";

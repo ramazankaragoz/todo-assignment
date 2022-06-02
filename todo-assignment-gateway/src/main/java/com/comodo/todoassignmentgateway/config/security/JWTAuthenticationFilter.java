@@ -1,4 +1,4 @@
-package com.comodo.todoassignmentgateway.config;
+package com.comodo.todoassignmentgateway.config.security;
 
 import com.comodo.todoassignmentgateway.dto.UserInformationDto;
 import com.fasterxml.jackson.databind.ObjectMapper;

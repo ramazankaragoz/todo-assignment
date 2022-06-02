@@ -1,4 +1,4 @@
-package com.comodo.todoassignmentgateway.config;
+package com.comodo.todoassignmentgateway.config.swagger;
 
 
 import io.swagger.v3.oas.models.Components;

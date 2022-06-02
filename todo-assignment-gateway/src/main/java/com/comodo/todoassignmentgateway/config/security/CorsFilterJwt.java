@@ -1,4 +1,4 @@
-package com.comodo.todoassignmentgateway.config;
+package com.comodo.todoassignmentgateway.config.security;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
