@@ -1,13 +1,12 @@
 package com.comodo.userapi.controller;
 
+import com.comodo.userapi.dto.UserDto;
 import com.comodo.userapi.dto.UserInformationDto;
 import com.comodo.userapi.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -17,6 +16,12 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @PostMapping
+    public ResponseEntity<String> save(@Validated @RequestBody UserDto userDto){
+        userService.save(userDto);
+        return new ResponseEntity<>(HttpStatus.CREATED.getReasonPhrase(),HttpStatus.CREATED);
     }
 
     @GetMapping("/information/{email}")

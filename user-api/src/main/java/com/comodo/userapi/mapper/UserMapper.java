@@ -1,5 +1,6 @@
 package com.comodo.userapi.mapper;
 
+import com.comodo.userapi.dto.UserDto;
 import com.comodo.userapi.dto.UserInformationDto;
 import com.comodo.userapi.entity.AppUser;
 import com.comodo.userapi.entity.Privilege;
@@ -12,6 +13,8 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
+
+    AppUser userDtoToAppUser(UserDto userDto);
 
     @Mapping(target = "privileges",expression = "java(mapToRolePrivileges(appUser))")
     UserInformationDto userToUserInformationDto(AppUser appUser);

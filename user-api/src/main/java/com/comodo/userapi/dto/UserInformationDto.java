@@ -1,6 +1,5 @@
 package com.comodo.userapi.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
