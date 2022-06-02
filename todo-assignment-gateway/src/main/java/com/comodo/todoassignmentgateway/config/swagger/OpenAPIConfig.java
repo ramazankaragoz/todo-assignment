@@ -4,11 +4,12 @@ package com.comodo.todoassignmentgateway.config.swagger;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.StringUtils;
 
 
 @Configuration
@@ -17,21 +18,17 @@ public class OpenAPIConfig {
     @Bean
     public OpenAPI customOpenAPI() {
 
+        final String securitySchemeName = "bearerAuth";
+        final String apiTitle = String.format("%s API", StringUtils.capitalize("TODO"));
 
-
-        return new OpenAPI()
-                .components(new Components().addSecuritySchemes("JWT", new SecurityScheme()
-                        .type(SecurityScheme.Type.HTTP)
-                        .scheme("bearer")
-                        .bearerFormat("JWT")
-                        .name("bearerAuth")
-                        ))
-                .info(new Info()
-                        .title("ToDo Gateway API")
-                        .version("v3")
-                        .description("Gateway API reference for developers")
-                        .termsOfService("https://java.com/")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")));
+        return new OpenAPI().addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
+                .components(new Components().addSecuritySchemes(securitySchemeName,
+                        new SecurityScheme().name(securitySchemeName)
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer")
+                                .bearerFormat("JWT")))
+                .info(new Info().title(apiTitle)
+                        .version("1.0"));
     }
 
     @Bean
