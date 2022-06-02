@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /gateway
+
+
+springdoc:
+  show-login-endpoint: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    enabled: true
+    disable-swagger-default-url: true
+  show-actuator: false
