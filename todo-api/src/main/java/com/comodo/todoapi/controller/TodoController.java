@@ -3,12 +3,14 @@ package com.comodo.todoapi.controller;
 import com.comodo.todoapi.dto.CreateTodoDto;
 import com.comodo.todoapi.dto.TodoDto;
 import com.comodo.todoapi.dto.UpdateTodoDto;
+import com.comodo.todoapi.repository.search.SearchCriteria;
 import com.comodo.todoapi.service.TodoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/todo")
@@ -23,6 +25,11 @@ public class TodoController {
     @PostMapping
     public ResponseEntity<TodoDto> save(@Valid @RequestBody CreateTodoDto createTodoDto) {
         return new ResponseEntity<>(todoService.save(createTodoDto), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<TodoDto>> search(@RequestBody List<SearchCriteria> search){
+        return new ResponseEntity<>(todoService.search(search), HttpStatus.OK);
     }
 
     @PutMapping("{id}")
