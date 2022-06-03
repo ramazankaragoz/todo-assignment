@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  group-api:
+    build: .
+    container_name: group-api
+    image: group-api
+    ports:
+      - "8083:8083"
+    networks:
+      - mynet

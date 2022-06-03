@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  todo-assignment-gateway:
+    build: .
+    container_name: todo-assignment-gateway
+    image: todo-assignment-gateway
+    ports:
+      - "8080:8080"

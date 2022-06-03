@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  todo-api:
+    build: .
+    container_name: todo-api
+    image: todo-api
+    ports:
+      - "8082:8082"

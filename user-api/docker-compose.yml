@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  user-api:
+    build: .
+    container_name: user-api
+    image: user-api
+    ports:
+      - "8081:8081"
