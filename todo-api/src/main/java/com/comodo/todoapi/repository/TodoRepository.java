@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long>, JpaSpecificationExecutor<Todo> {
 
-    Todo getById(Long id);
     boolean existsByGroupIdAndTodoName(Long groupId, String todoName);
+
+    Todo getByGroupIdAndTodoName(Long groupId, String todoName);
 }

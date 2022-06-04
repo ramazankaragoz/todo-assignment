@@ -12,10 +12,11 @@ import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 public class SearchSpecification<T> implements Specification<T> {
 
@@ -48,6 +49,17 @@ public class SearchSpecification<T> implements Specification<T> {
                     if (test.getActualTypeArguments().length > 0) {
                         return getGenericTypeIdPredicate(root, builder, test, true);
                     }
+                }
+
+                if (root.get(criteria.getField()).getJavaType().equals(Date.class)) {
+                    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    Date value = formatter.parse(criteria.getValue().toString());
+
+                    LocalDate localDate=LocalDate.ofInstant(value.toInstant(),ZoneId.systemDefault());
+                    localDate=localDate.plusDays(1);
+                    Date dt = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+                    return builder.between(root.get(criteria.getField()), value,dt);
                 }
 
                 return builder.equal(root.get(criteria.getField()),
@@ -122,6 +134,7 @@ public class SearchSpecification<T> implements Specification<T> {
                 criteria.getValues() == null && criteria.getOperation().equals(SearchOperator.IN);
     }
 
+    @SneakyThrows
     private Object castToRequiredType(Class fieldType, String value) {
         if (fieldType.isAssignableFrom(Double.class)) {
             return Double.valueOf(value);

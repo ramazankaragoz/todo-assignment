@@ -6,6 +6,5 @@ public enum SearchOperator {
     EQUALS,
     LIKE,
     NOT_EQ,
-    IN,
-    ELEMENT_MATCH
+    IN
 }

@@ -23,10 +23,12 @@ public class TodoServiceImpl implements TodoService{
 
     private final TodoRepository todoRepository;
     private final TodoMapper todoMapper;
+    private final RabbitMQ rabbitMQ;
 
-    public TodoServiceImpl(TodoRepository todoRepository, TodoMapper todoMapper) {
+    public TodoServiceImpl(TodoRepository todoRepository, TodoMapper todoMapper, RabbitMQ rabbitMQ) {
         this.todoRepository = todoRepository;
         this.todoMapper = todoMapper;
+        this.rabbitMQ = rabbitMQ;
     }
 
     @Override
@@ -40,15 +42,25 @@ public class TodoServiceImpl implements TodoService{
 
         var savedTodo = todoRepository.save(todo);
 
+        rabbitMQ.sendToQueue(savedTodo);
+
         return todoMapper.toDto(savedTodo);
     }
 
     @Override
     public TodoDto update(Long id, UpdateTodoDto updateTodoDto) {
-        var todo = todoRepository.getById(id);
+        var todo = todoRepository.findById(id).orElse(null);
 
         if (Objects.isNull(todo)){
             throw new TodoNotFoundException("Todo not found.");
+        }
+
+        if (Objects.nonNull(updateTodoDto.getGroupId())&&Objects.nonNull(updateTodoDto.getTodoName())){
+            var groupIdAndTodoName = todoRepository.getByGroupIdAndTodoName(updateTodoDto.getGroupId(),
+                    updateTodoDto.getTodoName());
+            if (Objects.nonNull(groupIdAndTodoName)&&!groupIdAndTodoName.getId().equals(id)){
+                throw new TodoAlReadyExistException("Todo must be belong to only one group.");
+            }
         }
 
         var updatedTodo = todoMapper.update(todo, updateTodoDto);
@@ -57,7 +69,7 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void delete(Long id) {
-        var todo = todoRepository.getById(id);
+        var todo = todoRepository.findById(id).orElse(null);
 
         if (Objects.isNull(todo)){
             throw new TodoNotFoundException("Todo not found.");

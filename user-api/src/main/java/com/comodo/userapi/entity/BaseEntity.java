@@ -28,7 +28,7 @@ public abstract class BaseEntity {
     private Instant updateDate;
 
     @Column(name = "deleted")
-    private Boolean deleted=Boolean.TRUE;
+    private Boolean deleted=Boolean.FALSE;
 
     @LastModifiedBy
     @Column(name = "last_modified_by", length = 50)

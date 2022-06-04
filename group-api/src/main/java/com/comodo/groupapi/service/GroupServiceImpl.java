@@ -34,7 +34,7 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public GroupDto update(Long id, UpdateGroupDto updateGroupDto) {
-        var group = groupRepository.getById(id);
+        var group = groupRepository.findById(id).orElse(null);
 
         if (Objects.isNull(group)){
             throw new GroupNotFoundException("Group not found.");
@@ -46,7 +46,7 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public void delete(Long id) {
-        var group = groupRepository.getById(id);
+        var group = groupRepository.findById(id).orElse(null);
 
         if (Objects.isNull(group)){
             throw new GroupNotFoundException("Group not found.");

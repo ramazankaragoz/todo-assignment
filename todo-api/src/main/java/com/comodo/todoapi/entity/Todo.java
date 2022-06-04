@@ -5,8 +5,10 @@ import com.comodo.todoapi.util.StatusEnum;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -18,7 +20,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "todo")
 @SQLDelete(sql = "UPDATE todo SET deleted = true WHERE id = ?")
-public class Todo extends BaseEntity{
+@Where(clause = "deleted = false")
+public class Todo extends BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = -7652508592236538223L;
 
     @Column(name = "group_id")
     private Long groupId;

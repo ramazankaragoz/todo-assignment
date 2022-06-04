@@ -6,3 +6,10 @@ services:
     image: todo-api
     ports:
       - "8082:8082"
+    depends_on:
+      - todo-rabbitmq
+  todo-rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - '5672:5672'
+      - '15672:15672'

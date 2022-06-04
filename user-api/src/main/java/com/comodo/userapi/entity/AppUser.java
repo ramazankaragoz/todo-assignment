@@ -1,6 +1,7 @@
 package com.comodo.userapi.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name = "usr_user")
+@Where(clause = "deleted=false")
 public class AppUser extends BaseEntity{
 
     @Column(name = "email",nullable = false)
