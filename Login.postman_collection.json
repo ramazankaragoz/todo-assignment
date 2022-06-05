@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "5c7bcac1-0468-445b-ab5d-7d352a777387",
+		"name": "Login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ramazan.karagoz@gmail.com\",\r\n    \"password\": \"123123\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gateway/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
