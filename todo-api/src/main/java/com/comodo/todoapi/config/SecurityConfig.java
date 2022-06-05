@@ -13,7 +13,7 @@ public class SecurityConfig {
         http
                 .mvcMatcher("/todo/**")
                 .authorizeRequests()
-                .mvcMatchers("/todo/**").access("hasAuthority('SCOPE_todo.read')")
+                .mvcMatchers("/todo/**").access("hasAnyAuthority('SCOPE_todo.read','SCOPE_todo.write')")
                 .and()
                 .oauth2ResourceServer()
                 .jwt();

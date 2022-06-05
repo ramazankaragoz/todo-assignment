@@ -11,9 +11,9 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .mvcMatcher("/todo/**")
+                .mvcMatcher("/group/**")
                 .authorizeRequests()
-                .mvcMatchers("/group/**").access("hasAuthority('SCOPE_todo.read')")
+                .mvcMatchers("/group/**").access("hasAnyAuthority('SCOPE_todo.read','SCOPE_todo.write')")
                 .and()
                 .oauth2ResourceServer()
                 .jwt();

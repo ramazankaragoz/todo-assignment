@@ -12,3 +12,26 @@ spring:
     username: guest
     password: guest
     port: 5672
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 123123
+    generate-unique-name: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    defer-datasource-initialization: true
+  h2:
+    console:
+      path: /h2-console
+      settings:
+        trace: true
+        web-allow-others: true
+      enabled: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data/data.sql

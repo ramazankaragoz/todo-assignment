@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -53,11 +54,12 @@ public class SearchSpecification<T> implements Specification<T> {
 
                 if (root.get(criteria.getField()).getJavaType().equals(Date.class)) {
                     DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    formatter.setTimeZone(TimeZone.getDefault());
                     Date value = formatter.parse(criteria.getValue().toString());
 
-                    LocalDate localDate=LocalDate.ofInstant(value.toInstant(),ZoneId.systemDefault());
-                    localDate=localDate.plusDays(1);
-                    Date dt = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                    LocalDateTime localDateTime=LocalDateTime.ofInstant(value.toInstant(),ZoneId.systemDefault());
+                    localDateTime=localDateTime.plusDays(1).minusNanos(1);
+                    Date dt = java.sql.Timestamp.valueOf(localDateTime);
 
                     return builder.between(root.get(criteria.getField()), value,dt);
                 }
