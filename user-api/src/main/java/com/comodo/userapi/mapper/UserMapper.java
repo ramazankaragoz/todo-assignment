@@ -19,6 +19,8 @@ public interface UserMapper {
     @Mapping(target = "privileges",expression = "java(mapToRolePrivileges(appUser))")
     UserInformationDto userToUserInformationDto(AppUser appUser);
 
+    AppUser userInformationDtoToUser(UserInformationDto userInformationDto);
+
 
     default List<String> mapToRolePrivileges(AppUser appUser){
         Collection<Role> roles = appUser.getRoles();

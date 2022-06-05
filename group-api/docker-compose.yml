@@ -6,5 +6,3 @@ services:
     image: group-api
     ports:
       - "8083:8083"
-    networks:
-      - mynet

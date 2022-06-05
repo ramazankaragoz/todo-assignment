@@ -4,6 +4,7 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -34,6 +35,8 @@ import java.util.UUID;
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
 
+    @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
+    private String issuerUri;
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -86,7 +89,7 @@ public class SecurityConfig {
 
     @Bean
     public ProviderSettings providerSettings() {
-        return ProviderSettings.builder().issuer("http://localhost:8081").build();
+        return ProviderSettings.builder().issuer(issuerUri).build();
     }
 
     @Bean

@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  user-api:
+    build:
+      dockerfile: Dockerfile
+      context: ./user-api
+    container_name: user-api
+    image: user-api
+    ports:
+      - "8081:8081"
+  todo-assignment-gateway:
+    build:
+      dockerfile: Dockerfile
+      context: ./todo-assignment-gateway
+    container_name: todo-assignment-gateway
+    image: todo-assignment-gateway
+    ports:
+      - "8080:8080"
+  group-api:
+    build:
+      dockerfile: Dockerfile
+      context: ./group-api
+    container_name: group-api
+    image: group-api
+    ports:
+      - "8083:8083"
+  todo-api:
+    build:
+      dockerfile: Dockerfile
+      context: ./todo-api
+    container_name: todo-api
+    image: todo-api
+    ports:
+      - "8082:8082"
+    depends_on:
+      - todo-rabbitmq
+  todo-rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - '5672:5672'
+      - '15672:15672'

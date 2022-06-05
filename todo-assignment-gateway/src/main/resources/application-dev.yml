@@ -5,13 +5,13 @@ server:
 
 client:
   user-api:
-    server-url: http://localhost:8081/user
+    server-url: http://user-api:8081/user
   todo-api:
-    server-url: http://localhost:8082/todo
+    server-url: http://todo-api:8082/todo
   group-api:
-    server-url: http://localhost:8083/group
+    server-url: http://group-api:8083/group
   auth-server:
-    token-url: http://localhost:8081/oauth2/token
+    token-url: http://user-api:8081/oauth2/token
     client-id: todo-client
     secret: secret
     scopes: todo.read,todo.write

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@FeignClient(name = "todo-client", url = "http://localhost:8082/todo",configuration = {FeignClientConfig.class})
+@FeignClient(name = "todo-client", url = "${client.todo-api.server-url}",configuration = {FeignClientConfig.class})
 public interface TodoClient {
 
     @PostMapping

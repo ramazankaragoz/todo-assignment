@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 
-@FeignClient(name = "user-client", url = "http://localhost:8081/user",configuration = {FeignClientConfig.class})
+@FeignClient(name = "user-client", url = "${client.user-api.server-url}",configuration = {FeignClientConfig.class})
 public interface UserClient {
 
     @GetMapping("/information/{email}")

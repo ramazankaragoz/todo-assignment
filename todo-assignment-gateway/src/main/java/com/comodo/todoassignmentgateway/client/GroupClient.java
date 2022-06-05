@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@FeignClient(name = "group-client", url = "http://localhost:8083/group",configuration = {FeignClientConfig.class})
+@FeignClient(name = "group-client", url = "${client.group-api.server-url}",configuration = {FeignClientConfig.class})
 public interface GroupClient {
 
     @PostMapping
