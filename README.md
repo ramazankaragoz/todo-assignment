@@ -1,6 +1,6 @@
 ## Todo Assignment
 
-## Table of contents
+### Table of contents
 * [Kullanılan Teknolojiler](#kullanlan-teknolojiler)
 * [Setup](#setup)
 
