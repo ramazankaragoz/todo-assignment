@@ -18,7 +18,7 @@
 
 ### Setup
 
- projeyi çalıştırmak için ana dizinde .\mvnw clean install yapıp jarları oluşturduktan sonra docker compose up ile uygulamayı çalıştırabilirsiniz.
+ projeyi çalıştırmak için ana dizinde mvn -P main -am clean install yapıp jarları oluşturduktan sonra docker compose up ile uygulamayı çalıştırabilirsiniz.
 *
  http://localhost:8080/gateway/swagger-ui.html ile gateway erişip kullanıcı oluşturabilirsiniz.
 *
